@@ -14,13 +14,13 @@ import com.spring.service.EmployeeService;
 /*
  * 
  *  DDB notes:
-RegisterEmployeeManaged Bean is developed with 
-using of @ManagedProperty annotation that will help you get a 
-Spring EmployeeService instance injected. That association won’t 
-be applicable if you don’t provide a special faces-config.xml 
-file that contains a newly added Spring’s el-resolver. 
-	<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-
+ RegisterEmployeeManaged Bean is developed with 
+ using of @ManagedProperty annotation that will help you get a 
+ Spring EmployeeService instance injected. That association won’t 
+ be applicable if you don’t provide a special faces-config.xml 
+ file that contains a newly added Spring’s el-resolver. 
+ <el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+ *
  */
 
 @ManagedBean
