@@ -9,7 +9,11 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import com.primefacesjsf.pojo.Car;
- 
+
+/*
+ * Car service by DDB
+ */
+
 @ManagedBean(name = "carService")
 @ApplicationScoped
 public class CarService {
