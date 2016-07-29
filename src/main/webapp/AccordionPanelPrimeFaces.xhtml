@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+ 
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <script name="jquery/jquery.js" library="primefaces"></script>
+        
+        <script>
+            alert(PF);
+            function doSelect(index){
+                PF('accordionPanel1').select(index);
+            }
+ 
+            function doUnSelect(index){
+                PF('accordionPanel1').unselect(index);
+            }
+        </script>
+        
+    </h:head>
+    <!-- 
+     DDB Notes: AccordionPanel supports lazy loading of tab content,
+     when dynamic attribute is set to true, only active tab contents will be 
+     rendered to the client side and clicking an 
+    inactive tab header will do an ajax request to load the tab contents.
+    This feature is useful to reduce bandwidth and speed up page loading time. 
+    By default activating a previously loaded dynamic tab does not 
+    initiate a request to load the contents again as tab is cached. 
+    To control this behavior use cache option.
+    
+    Just one note should be noticed here, 
+    is that the ajax is a normal event that handled by the jsf lifecycle, 
+    thus it’s mandatory for you to put your component within an h:form 
+    and if you  missed it up, 
+    your ajax won’t fired and your listener isn’t invoked.
+    
+    PF is an implicit JavaScript object that is provided by the Primefaces JavaScript API, 
+    it accepts a WidgetVar variable as a component argument,
+    thus allowing the developer invoke that component’s methods through it.
+    
+    Primefaces JavaScript library provides you 
+    two methods that can be invoked against 
+    AccordionPanel component; select(index) and unselect(index). 
+    By passing the accordionPanel widgetVar into PF object, 
+    those provided methods are accessible there.
+     -->
+    
+    <h:body>
+    <h:form>
+         <div style="width: 500px;">
+            <p:accordionPanel  widgetVar="accordionPanel1" activeIndex="0">
+             <p:ajax event="tabChange" listener="#{accordionPanelManagedBean.onChange}"></p:ajax>
+                <p:tab title="Welcome Tab">
+                    <p:outputLabel value="#{accordionPanelManagedBean.journalMessage}"></p:outputLabel>
+                </p:tab>
+                <p:tab title="Component Tab">
+                    <p:outputLabel value="#{accordionPanelManagedBean.componentMessage}"></p:outputLabel>
+                </p:tab>
+            </p:accordionPanel>
+            
+            <input id="index" type="text"/>
+            <input id="Select" value="Select" type="button" onclick="doSelect(document.getElementById('index').value);false"/>
+            <input id="UnSelect" value="UnSelect" type="button" onclick="doUnSelect(document.getElementById('index').value);false"/>
+           
+        </div>
+      </h:form>
+    </h:body>
+</html>
